@@ -1,0 +1,24 @@
+<!-- <div class="cd-card" [ngClass]="{'cdadded': Cd.onsale === true}">
+  <h3>{{ Cd.title | uppercase}}</h3>
+  <p>Sortie le : {{ Cd.releaseDate | date: 'dd/MM/yyyy'}}</p>
+  <p>Auteur/Groupe : {{Cd.author}}</p>
+  <p>Prix : {{Cd.price | currency: 'EUR'}}</p>
+  <p>
+    En stock : <span [ngStyle]="{ color: 'rgb(0, ' + Cd.quantity + ', 0)' }"> {{Cd.quantity}} </span>
+    <button (click)="onAddCD()">Ajouter une unité</button>
+  </p>
+  <img [src]="Cd.thumbnail" [alt]="Cd.title" />
+</div> -->
+
+<div class="cd-card" [ngStyle]="{'background-color': 'rgb(0, ${Cd.quantity}, 0)'}"
+  [ngClass]="{'cdadded': Cd.onsale === true}">
+  <h3>{{ Cd.title | uppercase}}</h3>
+  <p>Sortie le : {{ Cd.releaseDate | date: 'dd/MM/yyyy'}}</p>
+  <p>Auteur/Groupe : {{Cd.author}}</p>
+  <p>Prix : {{Cd.price | currency: 'EUR'}}</p>
+  <p>
+    En stock : <span> {{Cd.quantity}} </span>
+    <button (click)="onAddCD()">Ajouter une unité</button>
+  </p>
+  <img [src]="Cd.thumbnail" [alt]="Cd.title" />
+</div>
