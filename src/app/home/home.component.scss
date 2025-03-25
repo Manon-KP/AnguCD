@@ -1,0 +1,27 @@
+div {
+  text-align: center;
+  margin-top: 50px;
+
+  h1 {
+    font-size: 32px;
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 20px;
+  }
+
+  .button {
+    background: #252525;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    transition: 0.3s;
+
+    &:hover {
+      background: #000000;
+      cursor: pointer;
+    }
+  }
+}

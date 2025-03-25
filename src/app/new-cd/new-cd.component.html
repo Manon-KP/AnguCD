@@ -1,0 +1,68 @@
+<div class="monForm">
+    <section class="subForm visuForm">
+        <h2>Vue du CD</h2>
+        <div *ngIf="currentCD !== undefined">
+            <h3>{{currentCD.title}}</h3>
+            <p>Sortie le : {{currentCD.releaseDate | date: 'dd/MM/yyyy'}}</p>
+            <p>Auteur/Groupe : {{currentCD.author}}</p>
+            <p>Prix : {{currentCD.price | currency: 'EUR'}}</p>
+            <p>En stock : {{currentCD.quantity}}</p>
+            <img [src]="currentCD.thumbnail" [alt]="currentCD.title" />
+        </div>
+
+    </section>
+    <section class="subForm saisieForm">
+        <h2>Ajouter un nouveau CD</h2>
+        <form [formGroup]="formulaire">
+            <label for="title">Titre</label>
+            <div class="input">
+                <input type="text" class="form-control" id="title" formControlName="title" />
+                <div *ngIf="formulaire.get('title')?.invalid && (formulaire.get('title')?.dirty || formulaire.get('title')?.touched)">
+                    <div *ngIf="formulaire.get('title')?.hasError('required')">Le titre est requis</div>
+                    <div *ngIf="formulaire.get('title')?.hasError('minlength')">Le titre doit contenir au moins 3 caractères
+                    </div>
+                </div>
+            </div>
+
+            <label for="author">Auteur/Groupe</label>
+            <div class="input">
+                <input type="text" class="form-control" id="author" formControlName="author" />
+                <div *ngIf="formulaire.get('author')?.invalid && (formulaire.get('author')?.dirty || formulaire.get('author')?.touched)">
+                    <div *ngIf="formulaire.get('author')?.hasError('required')">L'auteur est requis</div>
+                    <div *ngIf="formulaire.get('author')?.hasError('minlength')">L'auteur doit contenir au moins 3 caractères
+                    </div>
+                </div>
+            </div>
+            <label for="releaseDate">Date de sortie</label>
+            <div class="input">
+                <input type="date" class="form-control" id="releaseDate" formControlName="releaseDate" />
+                <div *ngIf="formulaire.get('releaseDate')?.invalid && (formulaire.get('releaseDate')?.dirty || formulaire.get('releaseDate')?.touched)">
+                    <div *ngIf="formulaire.get('releaseDate')?.hasError('required')">La date de sortie est requise</div>
+                </div>
+            </div>
+            <label for="price">Prix</label>
+            <div class="input">
+                <input type="number" class="form-control" id="price" formControlName="price" />
+                <div *ngIf="formulaire.get('price')?.invalid && (formulaire.get('price')?.dirty || formulaire.get('price')?.touched)">
+                    <div *ngIf="formulaire.get('price')?.hasError('required')">Le prix est requis</div>
+                    <div *ngIf="formulaire.get('price')?.hasError('minlength')">Le prix doit être supérieur à 0</div>
+                </div>
+            </div> <label for="quantity">Quantité</label>
+            <div class="input">
+                <input type="number" class="form-control" id="quantity" formControlName="quantity" />
+                <div *ngIf="formulaire.get('quantity')?.invalid && (formulaire.get('quantity')?.dirty || formulaire.get('quantity')?.touched)">
+                    <div *ngIf="formulaire.get('quantity')?.hasError('required')">La quantité est requise</div>
+                    <div *ngIf="formulaire.get('quantity')?.hasError('minlength')">La quantité doit être supérieure à 0</div>
+                </div>
+            </div>
+            <label for="thumbnail">URL de l'image</label>
+            <div class="input">
+                <input type="text" class="form-control" id="thumbnail" formControlName="thumbnail" />
+                <div *ngIf="formulaire.get('thumbnail')?.invalid && (formulaire.get('thumbnail')?.dirty || formulaire.get('thumbnail')?.touched)">
+                    <div *ngIf="formulaire.get('thumbnail')?.hasError('required')">L'URL de l'image est requise</div>
+                </div>
+            </div>
+            <button class="button" (click)="onSubmit()" [disabled]="formulaire.invalid">Ajouter</button>
+        </form>
+    </section>
+</div>
